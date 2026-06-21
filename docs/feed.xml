@@ -1,51 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Spring Lake Surf Conditions — Remsen Ave</title>
     <link>https://example.com</link>
     <description>Daily 7-day surf forecast for Remsen Ave &amp; Ocean Ave N, Spring Lake, NJ</description>
-    <lastBuildDate>Sun, 21 Jun 2026 19:54:32 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 20:17:43 GMT</lastBuildDate>
     <item>
-      <title>2026-06-21: 🔴 NOT IDEAL</title>
-      <description>Best window 06:00 local — 1.8 ft @ 6.2 sec, wind 3 kt @ 219°. Low tide: 07:10, 19:37.</description>
-      <pubDate>Sun, 21 Jun 2026 19:54:32 GMT</pubDate>
-      <guid isPermaLink="false">2026-06-21-run-2026-06-21</guid>
-    </item>
-    <item>
-      <title>2026-06-22: 🔴 NOT IDEAL</title>
-      <description>Best window 06:00 local — 1.6 ft @ 5.7 sec, wind 3 kt @ 93°. Low tide: 08:04, 20:40.</description>
-      <pubDate>Sun, 21 Jun 2026 19:54:32 GMT</pubDate>
-      <guid isPermaLink="false">2026-06-22-run-2026-06-21</guid>
-    </item>
-    <item>
-      <title>2026-06-23: 🔴 NOT IDEAL</title>
-      <description>Best window 06:00 local — 3.4 ft @ 5.7 sec, wind 7 kt @ 144°. Low tide: 08:55, 21:38.</description>
-      <pubDate>Sun, 21 Jun 2026 19:54:32 GMT</pubDate>
-      <guid isPermaLink="false">2026-06-23-run-2026-06-21</guid>
-    </item>
-    <item>
-      <title>2026-06-24: 🟡 INTERESTING</title>
-      <description>Best window 14:00 local — 1.9 ft @ 6.5 sec, wind 4 kt @ 308°. Low tide: 09:43, 22:30.</description>
-      <pubDate>Sun, 21 Jun 2026 19:54:32 GMT</pubDate>
-      <guid isPermaLink="false">2026-06-24-run-2026-06-21</guid>
-    </item>
-    <item>
-      <title>2026-06-25: 🟡 INTERESTING</title>
-      <description>Best window 06:00 local — 1.7 ft @ 6.8 sec, wind 4 kt @ 273°. Low tide: 10:28, 23:17.</description>
-      <pubDate>Sun, 21 Jun 2026 19:54:32 GMT</pubDate>
-      <guid isPermaLink="false">2026-06-25-run-2026-06-21</guid>
-    </item>
-    <item>
-      <title>2026-06-26: 🔴 NOT IDEAL</title>
-      <description>Best window 06:00 local — 2.1 ft @ 5.4 sec, wind 9 kt @ 205°. Low tide: 11:12.</description>
-      <pubDate>Sun, 21 Jun 2026 19:54:32 GMT</pubDate>
-      <guid isPermaLink="false">2026-06-26-run-2026-06-21</guid>
-    </item>
-    <item>
-      <title>2026-06-27: 🔴 NOT IDEAL</title>
-      <description>Best window 06:00 local — 2.2 ft @ 6.0 sec, wind 4 kt @ 327°. Low tide: 00:03, 11:55.</description>
-      <pubDate>Sun, 21 Jun 2026 19:54:32 GMT</pubDate>
-      <guid isPermaLink="false">2026-06-27-run-2026-06-21</guid>
+      <title>7-Day Surf Forecast — 2026-06-21 to 2026-06-27</title>
+      <description>0 IDEAL, 2 INTERESTING, 5 NOT IDEAL over the next 7 days. 2026-06-21: 🔴 NOT IDEAL — best window 06:00, 1.8 ft @ 6.2 sec, wind 3 kt SW. Low tide: 07:10, 19:37. 2026-06-22: 🔴 NOT IDEAL — best window 06:00, 1.6 ft @ 5.7 sec, wind 3 kt E. Low tide: 08:04, 20:40. 2026-06-23: 🔴 NOT IDEAL — best window 06:00, 3.4 ft @ 5.7 sec, wind 7 kt SE. Low tide: 08:55, 21:38. 2026-06-24: 🟡 INTERESTING — best window 14:00, 1.9 ft @ 6.5 sec, wind 4 kt NW. Low tide: 09:43, 22:30. 2026-06-25: 🟡 INTERESTING — best window 06:00, 1.7 ft @ 6.8 sec, wind 4 kt W. Low tide: 10:28, 23:17. 2026-06-26: 🔴 NOT IDEAL — best window 06:00, 2.1 ft @ 5.4 sec, wind 9 kt SSW. Low tide: 11:12. 2026-06-27: 🔴 NOT IDEAL — best window 06:00, 2.2 ft @ 6.0 sec, wind 4 kt NNW. Low tide: 00:03, 11:55.</description>
+      <content:encoded><![CDATA[<p>0 IDEAL, 2 INTERESTING, 5 NOT IDEAL over the next 7 days.</p><ul><li>2026-06-21: 🔴 NOT IDEAL — best window 06:00, 1.8 ft @ 6.2 sec, wind 3 kt SW. Low tide: 07:10, 19:37.</li><li>2026-06-22: 🔴 NOT IDEAL — best window 06:00, 1.6 ft @ 5.7 sec, wind 3 kt E. Low tide: 08:04, 20:40.</li><li>2026-06-23: 🔴 NOT IDEAL — best window 06:00, 3.4 ft @ 5.7 sec, wind 7 kt SE. Low tide: 08:55, 21:38.</li><li>2026-06-24: 🟡 INTERESTING — best window 14:00, 1.9 ft @ 6.5 sec, wind 4 kt NW. Low tide: 09:43, 22:30.</li><li>2026-06-25: 🟡 INTERESTING — best window 06:00, 1.7 ft @ 6.8 sec, wind 4 kt W. Low tide: 10:28, 23:17.</li><li>2026-06-26: 🔴 NOT IDEAL — best window 06:00, 2.1 ft @ 5.4 sec, wind 9 kt SSW. Low tide: 11:12.</li><li>2026-06-27: 🔴 NOT IDEAL — best window 06:00, 2.2 ft @ 6.0 sec, wind 4 kt NNW. Low tide: 00:03, 11:55.</li></ul>]]></content:encoded>
+      <pubDate>Sun, 21 Jun 2026 20:17:43 GMT</pubDate>
+      <guid isPermaLink="false">run-2026-06-21</guid>
     </item>
   </channel>
 </rss>
