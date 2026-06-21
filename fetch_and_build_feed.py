@@ -63,6 +63,15 @@ DAYLIGHT_HOURS = range(6, 19)
 RANK = {"IDEAL": 0, "INTERESTING": 1, "NOT IDEAL": 2}
 BADGE = {"IDEAL": "\U0001F7E2 IDEAL", "INTERESTING": "\U0001F7E1 INTERESTING", "NOT IDEAL": "\U0001F534 NOT IDEAL"}
 
+COMPASS_POINTS = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
+                  "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+
+
+def degrees_to_compass(deg):
+    """Convert a wind direction in degrees to a 16-point compass label."""
+    idx = int((deg / 22.5) + 0.5) % 16
+    return COMPASS_POINTS[idx]
+
 MARINE_URL = (
     "https://marine-api.open-meteo.com/v1/marine"
     "?latitude={lat}&longitude={lon}"
@@ -184,41 +193,67 @@ def merge_and_classify(marine_json, wind_json, tide_json):
 
 
 def build_rss(days, lows_by_date):
+    """Builds a feed with ONE item per run (one new post per day), whose
+    body lists all 7 upcoming days. The feed file always holds just this
+    single latest item -- Reeder (or any reader) already remembers items
+    it has seen by guid, so daily history isn't lost from the reader's
+    point of view even though old items aren't kept in the file itself."""
     now = datetime.datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
     run_date = datetime.date.today().isoformat()
-    items = []
+    sorted_dates = sorted(days.keys())
 
-    for date_str in sorted(days.keys()):
+    tally = {"IDEAL": 0, "INTERESTING": 0, "NOT IDEAL": 0}
+    text_lines = []
+    html_lines = []
+
+    for date_str in sorted_dates:
         info = days[date_str]
+        tally[info["class"]] += 1
         lows = lows_by_date.get(date_str, [])
         low_str = ", ".join(lows) if lows else "n/a"
         badge = BADGE[info["class"]]
-        title = f"{date_str}: {badge}"
-        desc = (
-            f"Best window {info['hour']:02d}:00 local \u2014 "
+        wind_compass = degrees_to_compass(info["wind_dir"])
+
+        line = (
+            f"{date_str}: {badge} \u2014 best window {info['hour']:02d}:00, "
             f"{info['wave_ft']:.1f} ft @ {info['period_s']:.1f} sec, "
-            f"wind {info['wind_kt']:.0f} kt @ {info['wind_dir']:.0f}\u00b0. "
-            f"Low tide: {low_str}."
+            f"wind {info['wind_kt']:.0f} kt {wind_compass}. Low tide: {low_str}."
         )
-        guid = f"{date_str}-run-{run_date}"
-        items.append(
-            "    <item>\n"
-            f"      <title>{saxutils.escape(title)}</title>\n"
-            f"      <description>{saxutils.escape(desc)}</description>\n"
-            f"      <pubDate>{now}</pubDate>\n"
-            f"      <guid isPermaLink=\"false\">{saxutils.escape(guid)}</guid>\n"
-            "    </item>"
-        )
+        text_lines.append(line)
+        html_lines.append(f"<li>{saxutils.escape(line)}</li>")
+
+    if sorted_dates:
+        title = f"7-Day Surf Forecast \u2014 {sorted_dates[0]} to {sorted_dates[-1]}"
+    else:
+        title = f"7-Day Surf Forecast ({run_date})"
+
+    summary = (
+        f"{tally['IDEAL']} IDEAL, {tally['INTERESTING']} INTERESTING, "
+        f"{tally['NOT IDEAL']} NOT IDEAL over the next {len(sorted_dates)} days."
+    )
+    description_text = summary + " " + " ".join(text_lines)
+    content_html = f"<p>{saxutils.escape(summary)}</p><ul>" + "".join(html_lines) + "</ul>"
+    guid = f"run-{run_date}"
+
+    item = (
+        "    <item>\n"
+        f"      <title>{saxutils.escape(title)}</title>\n"
+        f"      <description>{saxutils.escape(description_text)}</description>\n"
+        f"      <content:encoded><![CDATA[{content_html}]]></content:encoded>\n"
+        f"      <pubDate>{now}</pubDate>\n"
+        f"      <guid isPermaLink=\"false\">{saxutils.escape(guid)}</guid>\n"
+        "    </item>"
+    )
 
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<rss version="2.0">\n'
+        '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n'
         "  <channel>\n"
         f"    <title>{saxutils.escape(FEED_TITLE)}</title>\n"
         f"    <link>{saxutils.escape(FEED_LINK)}</link>\n"
         f"    <description>{saxutils.escape(FEED_DESC)}</description>\n"
         f"    <lastBuildDate>{now}</lastBuildDate>\n"
-        + "\n".join(items) + "\n"
+        f"{item}\n"
         "  </channel>\n"
         "</rss>\n"
     )
