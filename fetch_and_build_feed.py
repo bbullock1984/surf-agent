@@ -44,7 +44,8 @@ FORECAST_DAYS = 7
 
 OUTPUT_PATH = "docs/feed.xml"
 FEED_TITLE = "Spring Lake Surf Conditions \u2014 Remsen Ave"
-FEED_LINK = "https://example.com"  # replace with your GitHub Pages URL
+FEED_LINK = "https://bbullock1984.github.io/surf-agent/"
+FEED_URL = "https://bbullock1984.github.io/surf-agent/feed.xml"
 FEED_DESC = "Daily 7-day surf forecast for Remsen Ave & Ocean Ave N, Spring Lake, NJ"
 
 # ---- Classification thresholds ----
@@ -314,12 +315,16 @@ def build_rss(days, lows_by_date, official_rip_risk):
 
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n'
+        '<rss version="2.0" '
+        'xmlns:content="http://purl.org/rss/1.0/modules/content/" '
+        'xmlns:atom="http://www.w3.org/2005/Atom">\n'
         "  <channel>\n"
         f"    <title>{saxutils.escape(FEED_TITLE)}</title>\n"
         f"    <link>{saxutils.escape(FEED_LINK)}</link>\n"
+        f'    <atom:link href="{saxutils.escape(FEED_URL)}" rel="self" type="application/rss+xml"/>\n'
         f"    <description>{saxutils.escape(FEED_DESC)}</description>\n"
         f"    <lastBuildDate>{now}</lastBuildDate>\n"
+        "    <ttl>60</ttl>\n"
         f"{item}\n"
         "  </channel>\n"
         "</rss>\n"
