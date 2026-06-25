@@ -2,7 +2,7 @@ name: Daily Surf Forecast Feed
 
 on:
   schedule:
-    - cron: "17 11 * * *"   # 11:00 UTC = ~7am EDT / 6am EST. Adjust as desired.
+    - cron: "17 7 * * *"   # 7:17 UTC = ~3:17am EDT / 2:17am EST.
   workflow_dispatch: {}     # lets you trigger it manually from the Actions tab
 
 permissions:
